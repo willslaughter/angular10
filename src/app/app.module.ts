@@ -5,8 +5,7 @@ import { MatButtonModule} from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MovieComponent } from './movie/movie.component';
 import { ShowMovComponent } from './movie/show-mov/show-mov.component';
@@ -20,8 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
-    MovieComponent,
-    ShowMovComponent
+    routingComponents
   ],
   imports: [
     BrowserModule,

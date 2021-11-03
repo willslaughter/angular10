@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AppModule } from '../app.module';
+import { Router } from '@angular/router';
 
 
 export class Movie {
@@ -25,18 +26,23 @@ export class MovieComponent implements OnInit {
 
   movies: Movie[] | undefined;
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private _router: Router
   ) { }
 
   ngOnInit(): void {
     this.getMovies();
   }
 
+  onClick(MovieId: number, MovieName: string,
+MovieDirector: string) {
+    this._router.navigate(['/showMovie', MovieId, MovieName, MovieDirector]);
+
+  }
 
   getMovies(){
     this.httpClient.get<any>('http://localhost:49625/api/movie').subscribe(
       Response => {
-        console.log(Response);
         this.movies = Response;
       }
     );

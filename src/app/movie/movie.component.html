@@ -1,5 +1,6 @@
 <div style="display: flex;">
 <mat-card class="m-2" *ngFor="let data of movies">
+  <div (click)="onClick(data.MovieId,data.MovieName,data.MovieDirector)" class="pointCursor">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>{{data.MovieName}}</mat-card-title>
@@ -11,5 +12,6 @@
         {{data.MovieDescription}}
       </p>
     </mat-card-content>
+  </div>
   </mat-card>
 </div>

@@ -1,6 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { SharedService } from 'src/app/shared.service';
-
+import { AppModule } from 'src/app/app.module';
+import { Movie } from '../movie.component';
 
 
 @Component({
@@ -9,21 +12,22 @@ import { SharedService } from 'src/app/shared.service';
   styleUrls: ['./show-mov.component.css']
 })
 export class ShowMovComponent implements OnInit {
-  MovieList:any=[];
-  constructor(private service: SharedService) { }
 
+ id  = +this._route.snapshot.params['MovieId'];
+ MovieName  = this._route.snapshot.params['MovieName'];
+ MovieDirector  = this._route.snapshot.params['MovieDirector'];
 
+  constructor(private httpClient: HttpClient,
+    private _route: ActivatedRoute) { }
+
+    movies: Movie[] | undefined;
 
   ngOnInit(): void {
-    this.refreshMovList();
+    const id  = +this._route.snapshot.params['MovieId'];
+
   }
 
 
 
-  refreshMovList(){
-    this.service.getMovList().subscribe(data=>{
-      this.MovieList=data;
-    });
-    console.log(this.MovieList);
-  }
 }
+
