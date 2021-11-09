@@ -1,3 +1,5 @@
+<div>
+
 <mat-card class="m-2">
 <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
@@ -6,8 +8,24 @@
   </mat-card-header>
   <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
   <mat-card-content>
-    <p>
-      
-    </p>
   </mat-card-content>
 </mat-card>
+</div>
+<div>
+<dx-button text='Add Review' (onClick)="openReviewForm()"></dx-button>
+<dx-popup  
+[width]="600" 
+[height]="560" 
+title='Write your Review... ' 
+[closeOnOutsideClick]='false' 
+[visible]='popupVisible'>
+<dx-text-area [(value)]="reviewDescription"></dx-text-area>
+<dx-button text="Close" location="bottom" (onClick)="closeReviewForm()"></dx-button>
+<dx-button text="Submit" location="bottom" (onClick)="addReview()"></dx-button>
+</dx-popup>
+<div *ngFor="let data of reviews">
+<mat-card class="m-2" *ngIf="id==data.MovieId"><p>
+{{data.ReviewDescription}}
+</p></mat-card>
+</div>
+</div>

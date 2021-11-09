@@ -13,6 +13,9 @@ import { SharedService } from './shared.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DxBoxModule, DxButtonModule, DxFormComponent, DxFormModule, DxPopupModule, DxTextAreaModule, DxTextBoxModule } from 'devextreme-angular';
+import { DxoFromModule } from 'devextreme-angular/ui/nested';
+
 
 
 
@@ -32,7 +35,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatMenuModule,
     MatToolbarModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    DxBoxModule,
+    DxButtonModule,
+    DxPopupModule,
+    DxFormModule,
+    DxTextBoxModule,
+    DxTextAreaModule
 
   ],
   exports: [
@@ -40,7 +49,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatMenuModule,
     MatToolbarModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    MatButtonModule,
+    DxButtonModule,
+    DxBoxModule,
+    DxPopupModule,
+    DxoFromModule,
+    DxFormModule,
+    HttpClientModule,
+    DxTextBoxModule,
+    DxTextAreaModule
   ],
   providers: [SharedService],
   bootstrap: [AppComponent]
