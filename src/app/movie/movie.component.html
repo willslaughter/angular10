@@ -1,12 +1,12 @@
-<div style="display: flex;">
-<mat-card class="m-2" *ngFor="let data of movies">
+<div class="cards" fxLayoutAlign="center"  >
+<mat-card class="m-2 movieCard" *ngFor="let data of movies"  >
   <div (click)="onClick(data.MovieId,data.MovieName,data.MovieDirector)" class="pointCursor">
     <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>{{data.MovieName}}</mat-card-title>
+      <div mat-card-avatar class="example-header-image titleCard"></div>
+      <mat-card-title >{{data.MovieName}}</mat-card-title>
       <mat-card-subtitle>{{data.MovieDirector}}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <img mat-card-image src='{{data.MoviePhoto}}' alt="" class="photoCard">
     <mat-card-content>
       <p>
         {{data.MovieDescription}}

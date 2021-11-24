@@ -1,31 +1,77 @@
-<div>
+<div class="d-flex justify-content-center">
 
-<mat-card class="m-2">
-<mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>{{MovieName}}</mat-card-title>
-    <mat-card-subtitle>{{MovieDirector}}</mat-card-subtitle>
-  </mat-card-header>
-  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-  <mat-card-content>
-  </mat-card-content>
-</mat-card>
+  <mat-card class="m-2 moveCard" fxFlexAlign="stretch" [style.width.px]="800">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image">
+
+      </div>
+      <div class='averageRating'>
+        <b *ngIf='greenRating' class='ratingColorGreen'>
+          <font size='+4'>
+            {{averageRating | number : '.1-1'}}
+          </font>
+        </b>
+        <b *ngIf='yellowRating' class='ratingColorYellow'>
+          <font size='+4'>
+            {{averageRating | number : '.1-1'}}
+          </font>
+        </b>
+        <b *ngIf='redRating' class='redRating' class='ratingColorRed'>
+          <font size='+4'>
+            {{averageRating | number : '.1-1'}}
+          </font>
+        </b>
+
+
+
+        <p><font size='-1'> Of {{totalReviews}} Total Reviews </font></p>
+      </div>
+      <mat-card-title class='movieTitle'>
+        <font size='+2'>{{MovieName}}</font>
+      </mat-card-title>
+      <mat-card-subtitle>{{MovieDirector}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="{{moviePhoto}}" class="moviePhoto">
+    <mat-card-content>
+    </mat-card-content>
+  </mat-card>
 </div>
 <div>
-<dx-button text='Add Review' (onClick)="openReviewForm()"></dx-button>
-<dx-popup  
-[width]="600" 
-[height]="560" 
-title='Write your Review... ' 
-[closeOnOutsideClick]='false' 
-[visible]='popupVisible'>
-<dx-text-area [(value)]="reviewDescription"></dx-text-area>
-<dx-button text="Close" location="bottom" (onClick)="closeReviewForm()"></dx-button>
-<dx-button text="Submit" location="bottom" (onClick)="addReview()"></dx-button>
-</dx-popup>
-<div *ngFor="let data of reviews">
-<mat-card class="m-2" *ngIf="id==data.MovieId"><p>
-{{data.ReviewDescription}}
-</p></mat-card>
-</div>
+  <dx-button icon='add' text='Add Review' color="red" (onClick)="openReviewForm()" class="addButton dx-icon" [width]="200"></dx-button>
+  <dx-popup [width]="600" [height]="460" title='Write a Review... ' [closeOnOutsideClick]='false'
+    [showCloseButton]='false' [visible]='popupVisible' [shading]="true" color="rgba(240, 178, 28, 0.2)">
+    <div class='dx-field'>
+      <div class="dx-field-label"><b>
+          <font size="+1"> Assign a rating: </font>
+        </b></div>
+      <dx-select-box class='dx-field-value' [items]="[10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]" [width]="100"
+        placeholder='Rating' [(value)]="rating"></dx-select-box>
+    </div>
+    <dx-text-area [height]="300" [(value)]="reviewDescription" class="text" placeholder='Write your review here...'>
+    </dx-text-area>
+    <dx-button class="close" text="Close" location="bottom" (onClick)="closeReviewForm()"></dx-button>
+    <dx-button class="submit" text="Submit" location="bottom" (onClick)="addReview()"></dx-button>
+    <dx-popup [width]="300" [height]="230" title='Error...' [visible]='showError'>
+      <p> Please enter atleast a rating for the movie... </p>
+      <dx-button text="OK" location="bottom" (onClick)="closeError()">
+      </dx-button>
+    </dx-popup>
+  </dx-popup>
+  <div class="d-flex justify-content-center" *ngFor="let data of reviews">
+    <mat-card class="m-2 reviewCard" *ngIf="id==data.MovieId && data.ReviewDescription" [style.width.px]="750">
+      <div><b class="userName">
+          <font size="+1">User</font>
+        </b>
+        <font class="reviewRating" size="+1">
+          {{data.Rating}}
+        </font>
+      </div>
+      <p>
+        <font size="+1">
+          {{data.ReviewDescription}}
+        </font>
+      </p>
+
+    </mat-card>
+  </div>
 </div>

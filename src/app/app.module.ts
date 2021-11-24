@@ -13,8 +13,9 @@ import { SharedService } from './shared.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DxBoxModule, DxButtonModule, DxFormComponent, DxFormModule, DxPopupModule, DxTextAreaModule, DxTextBoxModule } from 'devextreme-angular';
+import { DxBoxModule, DxButtonModule, DxFormComponent, DxFormModule, DxPopupModule, DxSelectBoxModule, DxTextAreaModule, DxTextBoxModule } from 'devextreme-angular';
 import { DxoFromModule } from 'devextreme-angular/ui/nested';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 
@@ -41,7 +42,9 @@ import { DxoFromModule } from 'devextreme-angular/ui/nested';
     DxPopupModule,
     DxFormModule,
     DxTextBoxModule,
-    DxTextAreaModule
+    DxTextAreaModule,
+    DxSelectBoxModule,
+    FlexLayoutModule
 
   ],
   exports: [
@@ -58,7 +61,9 @@ import { DxoFromModule } from 'devextreme-angular/ui/nested';
     DxFormModule,
     HttpClientModule,
     DxTextBoxModule,
-    DxTextAreaModule
+    DxTextAreaModule,
+    DxSelectBoxModule,
+    FlexLayoutModule
   ],
   providers: [SharedService],
   bootstrap: [AppComponent]

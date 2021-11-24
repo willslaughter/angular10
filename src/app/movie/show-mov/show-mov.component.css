@@ -1,0 +1,81 @@
+.addButton {
+    color: white;
+    border-color: black;
+    background-color: red;
+    margin-left: 848px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+::ng-deep .addButton .dx-icon {
+    color: rgb(255, 255, 255);
+  }
+.averageRating {
+    float: right;
+    margin-left: 300px;
+    margin-top: 15px;
+}
+.ratingColorGreen {
+    color:rgb(84, 230, 47);
+    outline-color: rgba(0,0,0,0.25);
+}
+.ratingColorYellow {
+    color:rgb(224, 238, 34);
+}
+.ratingColorRed {
+    color:rgb(230, 30, 23);
+}
+
+.moviePhoto {
+    height: 800px;
+}
+.movieTitle {
+    width: 300px;
+}
+
+.submit {
+    margin-left: 50px;
+    color: white;
+    border-color: black;
+    background-color: green;
+}
+.close {
+    margin-left: 170px;
+    color: white;
+    border-color: black;
+    background-color: red;
+
+}
+.text {
+    margin-bottom: 5px;
+}
+.selectBox {
+    margin-left: 150px;
+}
+.rating {
+    margin-top: 30px;
+    color: black;
+}
+.moveCard {
+    background-color:rgb(240, 130, 28);
+    border-color: black;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+.reviewCard {
+    background-color:rgb(218, 178, 120);
+    color: black;
+    border-color: black;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+.writeReviewPopup {
+    color: gray;
+}
+
+.reviewRating {
+    float: right;
+    
+}
+.userName {
+    width: 200px;
+}
+::ng-deep .blue-overlay .dx-overlay-content {  
+    background: blue !important;  
+} 
