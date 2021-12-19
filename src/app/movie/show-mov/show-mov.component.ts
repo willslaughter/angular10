@@ -25,6 +25,8 @@ export class Review {
   }
 }
 
+
+
 @Component({
   selector: 'app-show-mov',
   templateUrl: './show-mov.component.html',
@@ -34,8 +36,9 @@ export class ShowMovComponent implements OnInit {
 
 
  id  = +this._route.snapshot.params['MovieId'];
- MovieName  = this._route.snapshot.params['MovieName'];
- MovieDirector  = this._route.snapshot.params['MovieDirector'];
+ MovieName: string | undefined;
+ MovieDirector: string | undefined;
+ MoviePhoto: string | undefined;
  popupVisible = false;
  reviewDescription = "";
  rating = null;
@@ -47,7 +50,7 @@ export class ShowMovComponent implements OnInit {
  yellowRating = false;
  redRating = false;
  url = 'http://localhost:49625/api/review';
- moviePhoto = '';
+
 
 
   constructor(private httpClient: HttpClient,
@@ -57,13 +60,13 @@ export class ShowMovComponent implements OnInit {
 
     reviews!: Review[];
     movies!: Movie[];
-
+    movie!: Movie[];
 
 
   ngOnInit(): void {
     const id  = +this._route.snapshot.params['MovieId'];
     this.getReviews();
-    this.getMovies();
+    this.getMovie();
   }
 
 
@@ -87,7 +90,6 @@ export class ShowMovComponent implements OnInit {
        ReviewDescription: this.reviewDescription
     }
     this.httpClient.post(this.url, review).toPromise().then(data => {
-      console.log(data);
       this.getReviews();
     });
     this.popupVisible = false;
@@ -104,13 +106,11 @@ export class ShowMovComponent implements OnInit {
     this.filterLength = 0;
     for(let i = 0; i < this.reviews.length; i++)
     {
-      if(this.id == this.reviews[i].MovieId)
       this.filterLength = this.filterLength + 1;
     }
 
     for(let i = 0; i < this.reviews.length; i++)
     {
-      if(this.id == this.reviews[i].MovieId)
       this.averageRating = this.averageRating + this.reviews[i].Rating;
     }
 
@@ -137,17 +137,9 @@ export class ShowMovComponent implements OnInit {
 
   }
 
-  storeMovie(){
-    for(let i = 0; i< this.movies.length; i++)
-    {
-      if(this.movies[i].MovieId == this.id)
-        this.moviePhoto = this.movies[i].MoviePhoto;
-    }
-    console.log(this.moviePhoto);
-  }
 
   getReviews(){
-    this.httpClient.get<any>('http://localhost:49625/api/review').subscribe(
+    this.httpClient.get<any>('http://localhost:49625/api/review/' + this.id).subscribe(
       Response => {
         this.reviews = Response;
         this.averageRatings();
@@ -155,11 +147,14 @@ export class ShowMovComponent implements OnInit {
     );
   }
 
-  getMovies(){
-    this.httpClient.get<any>('http://localhost:49625/api/movie').subscribe(
+
+  getMovie(){
+    this.httpClient.get<any>('http://localhost:49625/api/movie/' + this.id).subscribe(
       Response => {
-        this.movies = Response;
-        this.storeMovie();
+        this.movie = Response;
+        this.MovieName = this.movie[0].MovieName;
+        this.MovieDirector = this.movie[0].MovieDirector;
+        this.MoviePhoto = this.movie[0].MoviePhoto;
       }
     );
   }

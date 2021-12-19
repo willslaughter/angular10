@@ -34,9 +34,8 @@ export class MovieComponent implements OnInit {
     this.getMovies();
   }
 
-  onClick(MovieId: number, MovieName: string,
-MovieDirector: string) {
-    this._router.navigate(['/showMovie', MovieId, MovieName, MovieDirector]);
+  onClick(MovieId: number) {
+    this._router.navigate(['/showMovie', MovieId]);
 
   }
 

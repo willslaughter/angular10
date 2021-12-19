@@ -44,7 +44,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     DxTextBoxModule,
     DxTextAreaModule,
     DxSelectBoxModule,
-    FlexLayoutModule
+    FlexLayoutModule,
 
   ],
   exports: [

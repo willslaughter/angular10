@@ -6,7 +6,7 @@ import { ShowMovComponent } from './movie/show-mov/show-mov.component'
 
 const routes: Routes = [
   {path:'movie',component:MovieComponent},
-  {path:'showMovie/:MovieId/:MovieName/:MovieDirector',component:ShowMovComponent}
+  {path:'showMovie/:MovieId',component:ShowMovComponent}
 ];
 
 @NgModule({

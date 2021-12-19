@@ -1,6 +1,6 @@
 <div class="cards" fxLayoutAlign="center"  >
 <mat-card class="m-2 movieCard" *ngFor="let data of movies"  >
-  <div (click)="onClick(data.MovieId,data.MovieName,data.MovieDirector)" class="pointCursor">
+  <div (click)="onClick(data.MovieId)" class="pointCursor">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image titleCard"></div>
       <mat-card-title >{{data.MovieName}}</mat-card-title>

@@ -24,6 +24,10 @@
     color:rgb(230, 30, 23);
 }
 
+.totalReviews {
+    margin-left: 5px;
+}
+
 .moviePhoto {
     height: 800px;
 }

@@ -31,7 +31,7 @@
       </mat-card-title>
       <mat-card-subtitle>{{MovieDirector}}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image src="{{moviePhoto}}" class="moviePhoto">
+    <img mat-card-image src="{{MoviePhoto}}" class="moviePhoto">
     <mat-card-content>
     </mat-card-content>
   </mat-card>
@@ -44,7 +44,7 @@
       <div class="dx-field-label"><b>
           <font size="+1"> Assign a rating: </font>
         </b></div>
-      <dx-select-box class='dx-field-value' [items]="[10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]" [width]="100"
+      <dx-select-box class='dx-field-value' [items]="[10, 9, 8, 7, 6, 5, 4, 3, 2, 1]" [width]="100"
         placeholder='Rating' [(value)]="rating"></dx-select-box>
     </div>
     <dx-text-area [height]="300" [(value)]="reviewDescription" class="text" placeholder='Write your review here...'>
@@ -58,7 +58,7 @@
     </dx-popup>
   </dx-popup>
   <div class="d-flex justify-content-center" *ngFor="let data of reviews">
-    <mat-card class="m-2 reviewCard" *ngIf="id==data.MovieId && data.ReviewDescription" [style.width.px]="750">
+    <mat-card class="m-2 reviewCard" *ngIf="data.ReviewDescription" [style.width.px]="750">
       <div><b class="userName">
           <font size="+1">User</font>
         </b>
