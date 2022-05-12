@@ -1,5 +1,6 @@
 .title {
     font-size: large;
+    margin-left: 300px;
     
 }
 body {
@@ -8,4 +9,44 @@ body {
 .title{
     margin-top: 40px;
     color: rgb(0, 0, 0);
+}
+.sign-in-button {
+    float: right;
+    margin-left: 600px;
+    width: 100px;
+    margin-right: -200px;
+    background-color: rgb(11, 188, 14);
+    color: rgb(255, 253, 250);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    border-color: orange;
+}
+
+.user-name {
+    float: right;
+    margin-left: 600px;
+    width: 100px;
+    margin-right: -200px;
+    color: rgb(34, 109, 194);
+
+    border-color: orange;
+}
+
+
+.create-account-text {
+    margin-top: 500px;
+    margin-left: 150px;
+}
+
+.submit {
+    margin-left: 50px;
+    color: white;
+    border-color: black;
+    background-color: green;
+}
+.close {
+    margin-left: 170px;
+    color: white;
+    border-color: black;
+    background-color: red;
+
 }

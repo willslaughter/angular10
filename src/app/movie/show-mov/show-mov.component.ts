@@ -25,6 +25,13 @@ export class Review {
   }
 }
 
+export class AverageRating {
+  constructor(
+    public averageRating: number
+  ) {
+  }
+}
+
 
 
 @Component({
@@ -39,10 +46,14 @@ export class ShowMovComponent implements OnInit {
  MovieName: string | undefined;
  MovieDirector: string | undefined;
  MoviePhoto: string | undefined;
+ MovieReleaseDate: string | undefined;
+ MovieDescription: string | undefined;
+ ReviewAverage: number | undefined;
+
  popupVisible = false;
  reviewDescription = "";
  rating = null;
- averageRating = 0;
+ averageRating: any;
  filterLength = 0;
  totalReviews = 0;
  showError = false;
@@ -50,6 +61,7 @@ export class ShowMovComponent implements OnInit {
  yellowRating = false;
  redRating = false;
  url = 'http://localhost:49625/api/review';
+ movieUrl = 'http://localhost:49625/api/movie';
 
 
 
@@ -61,12 +73,15 @@ export class ShowMovComponent implements OnInit {
     reviews!: Review[];
     movies!: Movie[];
     movie!: Movie[];
+    AverageRating!: AverageRating[];
 
 
   ngOnInit(): void {
     const id  = +this._route.snapshot.params['MovieId'];
     this.getReviews();
     this.getMovie();
+    this.averageRatings();
+    //this.sendAverage();
   }
 
 
@@ -81,6 +96,20 @@ export class ShowMovComponent implements OnInit {
     this.showError = false;
   }
 
+  sendAverage() {
+    let movie = {
+      MovieId: this.id,
+      MovieName: this.MovieName,
+      MovieDirector: this.MovieDirector,
+      MovieDescription: this.MovieDescription,
+      MoviePhoto: this.MoviePhoto,
+      ReviewAverage: 5.0
+   }
+   this.httpClient.put(this.url, movie).subscribe(data => {
+     console.log(data);
+   });
+  }
+
 
   addReview(){
     if(this.rating){
@@ -91,6 +120,7 @@ export class ShowMovComponent implements OnInit {
     }
     this.httpClient.post(this.url, review).toPromise().then(data => {
       this.getReviews();
+      this.averageRatings();
     });
     this.popupVisible = false;
     this.reviewDescription = "";
@@ -101,48 +131,43 @@ export class ShowMovComponent implements OnInit {
     }
   }
 
+  
   averageRatings(){
-    this.averageRating = 0;
-    this.filterLength = 0;
-    for(let i = 0; i < this.reviews.length; i++)
-    {
-      this.filterLength = this.filterLength + 1;
-    }
+    this.httpClient.get<any>('http://localhost:49625/api/movie/GetRatingAverage/' + this.id).subscribe(
+      Response => {
+         this.averageRating = Response[0].Column1;
+         this.ReviewAverage = Response[0].Column1;
 
-    for(let i = 0; i < this.reviews.length; i++)
-    {
-      this.averageRating = this.averageRating + this.reviews[i].Rating;
-    }
-
-    this.averageRating = this.averageRating/this.filterLength;
-    this.totalReviews = this.filterLength;
-
-    if(this.averageRating >= 8) {
-      this.greenRating = true;
-      this.yellowRating = false;
-      this.redRating = false;
-    }
-
-    if(this.averageRating < 8 && this.averageRating >= 5) {
-      this.yellowRating = true;
-      this.greenRating = false;
-      this.redRating = false;
-    }
-
-    if(this.averageRating < 5) {
-      this.redRating = true;
-      this.greenRating = false;
-      this.yellowRating = false;
-    }
-
+        //this.sendAverage();
+        if(this.averageRating >= 8) {
+          this.greenRating = true;
+          this.yellowRating = false;
+          this.redRating = false;
+        }
+    
+        if(this.averageRating < 8 && this.averageRating >= 5) {
+          this.yellowRating = true;
+          this.greenRating = false;
+          this.redRating = false;
+        }
+    
+        if(this.averageRating < 5) {
+          this.redRating = true;
+          this.greenRating = false;
+          this.yellowRating = false;
+        }
+      }
+    );
+    console.log(this.ReviewAverage);
   }
+  
 
 
   getReviews(){
     this.httpClient.get<any>('http://localhost:49625/api/review/' + this.id).subscribe(
       Response => {
         this.reviews = Response;
-        this.averageRatings();
+        this.totalReviews = Response.length;
       }
     );
   }
@@ -155,6 +180,8 @@ export class ShowMovComponent implements OnInit {
         this.MovieName = this.movie[0].MovieName;
         this.MovieDirector = this.movie[0].MovieDirector;
         this.MoviePhoto = this.movie[0].MoviePhoto;
+        this.MovieDescription = this.movie[0].MovieDescription;
+        this.ReviewAverage = this.movie[0].ReviewAverage;
       }
     );
   }

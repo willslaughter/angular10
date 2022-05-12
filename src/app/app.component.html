@@ -1,6 +1,30 @@
 <div class="container">
 
-    <h1 class="d-flex justify-content-center title"><b><font size='+5'>Movie Review</font></b></h1>
+    <h1 class="d-flex justify-content-center title">
+      <b><font size='+5'>Movie Review</font></b>
+      <dx-button *ngIf="user==''" class="sign-in-button" text="Sign In" (onClick)="SignIn()"></dx-button>
+      <b class="user-name" *ngIf="user"><font size='+3'>{{user}}</font></b>
+    </h1>
 
   <router-outlet></router-outlet>
+
 </div>
+
+<dx-popup [width]="600" [height]="260"  title='Enter your Username... ' [visible]='SignInPopup' [showCloseButton]='false'>
+  <div class="form">
+    <div class="dx-fieldset">
+    <div class='dx-field'>
+        <div class="dx-field-label">User Name: </div>
+        <div class="dx-field-value">
+          <dx-text-box [(value)]="user"></dx-text-box>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <dx-button class="close" text="Cancel" location="bottom" (onClick)="closeSignIn()"></dx-button>
+  <dx-button class="submit" text="Sign In" location="bottom" (onClick)="getUser()" ></dx-button>
+  <a class="create-account-text" href="http://localhost:4200/user">Don't have an account? Create one now... </a>
+</dx-popup>

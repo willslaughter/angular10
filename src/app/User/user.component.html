@@ -1,0 +1,24 @@
+<div>
+    <div class="form">
+        <div class="dx-fieldset">
+          <div class='dx-field'>
+            <div class="dx-field-label"><b>Enter a Username: </b></div>
+            <div class="dx-field-value">
+              <dx-text-box [(value)]="userName"></dx-text-box>
+            </div>
+          </div>
+          <div class='dx-field'>
+            <div class="dx-field-label"><b>Enter a Password: </b></div>
+            <div class="dx-field-value">
+              <dx-text-box ></dx-text-box>
+            </div>
+          </div>
+        </div>
+      </div>
+      <dx-button class="create-account" text="Create Account" location="bottom" (onClick)="addUser()"></dx-button>
+      <dx-popup [width]="300" [height]="230" title='Error...' [visible]='showError'>
+        <p> Please Enter a Username and Password </p>
+        <dx-button text="OK" location="bottom" (onClick)="closeError()">
+        </dx-button>
+      </dx-popup>
+</div>

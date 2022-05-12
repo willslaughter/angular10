@@ -1,8 +1,54 @@
+
+<dx-button icon='add' text='Add Movie' color="red" class="add-button" (onClick)="openReviewForm()" [width]="200"></dx-button>
+<!--
+<dx-popup [width]="600" [height]="460" title='Add a Movie... ' [closeOnOutsideClick]='false'
+    [showCloseButton]='false' [visible]='popupVisible' [shading]="true" color="rgba(240, 178, 28, 0.2)">
+    <div class='dx-field'>
+      <div class="dx-field-label"><b>
+          <font size="+1"> Add a Movie: </font>
+        </b></div>
+    </div>
+    <dx-text-area [height]="300"  class="text" placeholder='Write your review here...'>
+    </dx-text-area>
+    <dx-button class="close" text="Close" location="bottom" ></dx-button>
+    <dx-button class="submit" text="Submit" location="bottom" ></dx-button>
+    <dx-popup [width]="300" [height]="230" title='Error...' >
+      <p> Please enter atleast a rating for the movie... </p>
+      <dx-button text="OK" location="bottom" >
+      </dx-button>
+</dx-popup>
+-->
+
 <div class="cards" fxLayoutAlign="center"  >
-<mat-card class="m-2 movieCard" *ngFor="let data of movies"  >
+<mat-card class="m-2 movieCard card-container" *ngFor="let data of movies"  >
   <div (click)="onClick(data.MovieId)" class="pointCursor">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image titleCard"></div>
+      <div class='averageRating'>
+
+        <!--<b data-result-val=""><font size='+3'>{{data.ReviewAverage | number : '.1-1'}}</font></b>-->
+        <b *ngIf='data.ReviewAverage > 8'><font size='+3' color="green">{{data.ReviewAverage | number : '.1-1'}}</font></b>
+        <b *ngIf='data.ReviewAverage > 5 && data.ReviewAverage < 8'><font size='+3' color="yellow">{{data.ReviewAverage | number : '.1-1'}}</font></b>
+        <b *ngIf='data.ReviewAverage < 5'><font size='+3' color="red">{{data.ReviewAverage | number : '.1-1'}}</font></b>
+        <!--
+        <b *ngIf='greenRating' class='ratingColorGreen'>
+          <font size='+4'>
+            {{averageRating | number : '.1-1'}}
+          </font>
+        </b>
+        <b *ngIf='yellowRating' class='ratingColorYellow'>
+          <font size='+4'>
+            {{averageRating | number : '.1-1'}}
+          </font>
+        </b>
+        <b *ngIf='redRating' class='redRating' class='ratingColorRed'>
+          <font size='+4'>
+            {{averageRating | number : '.1-1'}}
+          </font>
+        </b>
+
+        -->
+      </div>
       <mat-card-title >{{data.MovieName}}</mat-card-title>
       <mat-card-subtitle>{{data.MovieDirector}}</mat-card-subtitle>
     </mat-card-header>
@@ -15,3 +61,51 @@
   </div>
   </mat-card>
 </div>
+
+
+<dx-popup [width]="600" [height]="460" title='Add a Movie... ' [closeOnOutsideClick]='false'
+    [showCloseButton]='false' [visible]='popupVisible' [shading]="true" color="rgba(240, 178, 28, 0.2)">
+  
+    <div class="form">
+    <div class="dx-fieldset">
+    <div class='dx-field'>
+        <div class="dx-field-label">Movie Name: </div>
+        <div class="dx-field-value">
+          <dx-text-box [(value)]="movieName"></dx-text-box>
+        </div>
+
+        <div class="dx-field-label">Movie Director: </div>
+        <div class="dx-field-value">
+          <dx-text-box [(value)]="movieDirector"></dx-text-box>
+        </div>
+
+        <div class="dx-field-label">Movie Photo Link: </div>
+        <div class="dx-field-value">
+          <dx-text-box [(value)]="moviePhoto"></dx-text-box>
+        </div>
+
+        <div class="dx-field-label">Movie Description: </div>
+        <div class="dx-field-value">
+        <dx-text-area  class="text" [(value)]="movieDescription" placeholder='Movie Description...'></dx-text-area>
+      </div>
+
+    </div>
+     </div>
+
+    
+        
+
+  </div>
+    <dx-button class="close dx-field-label" text="Close" location="bottom" (onClick)="closeReviewForm()"></dx-button>
+    <dx-button class="submit dx-field-label" text="Submit" location="bottom" (onClick)="addMovie()"></dx-button>
+
+    <!--
+    <dx-text-area [height]="300"  class="text" placeholder='Movie Description...'>
+    </dx-text-area>
+-->
+
+    <dx-popup [width]="300" [height]="230" title='Error...' >
+      <p> Please enter atleast a rating for the movie... </p>
+      <dx-button text="OK" location="bottom" >
+      </dx-button>
+</dx-popup>
