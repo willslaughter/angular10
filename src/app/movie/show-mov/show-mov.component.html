@@ -62,7 +62,7 @@
   <div class="d-flex justify-content-center" *ngFor="let data of reviews">
     <mat-card class="m-2 reviewCard" *ngIf="data.ReviewDescription" [style.width.px]="750">
       <div><b class="userName">
-          <font size="+1">User</font>
+          <font size="+1">{{data.UserName}}</font>
         </b>
         <font class="reviewRating" size="+1">
           {{data.Rating}}

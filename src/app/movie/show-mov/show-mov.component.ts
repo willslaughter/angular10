@@ -19,7 +19,8 @@ export class Review {
     public ReviewId: number,
     public MovieId: number,
     public Rating: number,
-    public ReviewDescription: string
+    public ReviewDescription: string,
+    public UserName: string
   ){
 
   }
@@ -116,7 +117,8 @@ export class ShowMovComponent implements OnInit {
     let review = {
        MovieId: this.id,
        Rating: this.rating,
-       ReviewDescription: this.reviewDescription
+       ReviewDescription: this.reviewDescription,
+       UserName: "AnotherUser2"
     }
     this.httpClient.post(this.url, review).toPromise().then(data => {
       this.getReviews();
@@ -166,12 +168,12 @@ export class ShowMovComponent implements OnInit {
   getReviews(){
     this.httpClient.get<any>('http://localhost:49625/api/review/' + this.id).subscribe(
       Response => {
+        console.log(Response);
         this.reviews = Response;
         this.totalReviews = Response.length;
       }
     );
   }
-
 
   getMovie(){
     this.httpClient.get<any>('http://localhost:49625/api/movie/' + this.id).subscribe(

@@ -10,6 +10,12 @@
 
 </div>
 
+<dx-popup [width]="300" [height]="230" title='Error...' [visible]='showError'>
+  <p> Please Enter a Username and Password </p>
+  <dx-button text="OK" location="bottom" (onClick)="closeError()">
+  </dx-button>
+</dx-popup>
+
 <dx-popup [width]="600" [height]="260"  title='Enter your Username... ' [visible]='SignInPopup' [showCloseButton]='false'>
   <div class="form">
     <div class="dx-fieldset">
@@ -27,4 +33,6 @@
   <dx-button class="close" text="Cancel" location="bottom" (onClick)="closeSignIn()"></dx-button>
   <dx-button class="submit" text="Sign In" location="bottom" (onClick)="getUser()" ></dx-button>
   <a class="create-account-text" href="http://localhost:4200/user">Don't have an account? Create one now... </a>
+</dx-popup>
+<dx-popup [width]="600" [height]="260"  title='Inactive' [visible]='inactivityPopup' [showCloseButton]='false'>
 </dx-popup>

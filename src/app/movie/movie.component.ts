@@ -86,7 +86,7 @@ export class MovieComponent implements OnInit {
       Response => {
         this.movies = Response;
         this.movieListLength = this.movies?.length;
-        for(let i = 0; i < this.movieListLength; i++){
+        for(let  i= 0; i < this.movieListLength; i++){
         this.getAverage(i);
         }
       }
